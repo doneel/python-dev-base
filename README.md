@@ -35,7 +35,7 @@ It's a vim python development environment with sane defaults and a few strong pe
 
 ### Usage
 1. Create a project specific image with this as the parent image. [Here's an example](https://github.com/doneel/python-dev-base/blob/master/examples/Dockerfile).
-  1. The *simplest* possible file would look something like this:
+   1. The *simplest* possible file would look something like this:
      ```
        FROM danieloneel/python-dev-base:latest
        COPY requirements.txt /app/requirements.txt
@@ -43,7 +43,7 @@ It's a vim python development environment with sane defaults and a few strong pe
        RUN pip install --user -r /app/requirements.txt
        ENTRYPOINT ["bin/bash"]
      ```
-  2. In order to be able to include the requirements file in the container (and install the dependencies), you need to run the docker build command from the project base directory. Personally, I prefer not to have this dockerfile sitting in project's root directory, so I prefer to put it in a subdirectory, like 'development-env':
+   2. In order to be able to include the requirements file in the container (and install the dependencies), you need to run the docker build command from the project base directory. Personally, I prefer not to have this dockerfile sitting in project's root directory, so I prefer to put it in a subdirectory, like 'development-env':
      ```
       docker build -t my-project-dev-env -f development-env/Dockerfile .
      ```
