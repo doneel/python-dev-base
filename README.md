@@ -35,7 +35,7 @@ It's a vim python development environment with sane defaults and a few strong pe
 
 ### Usage
 1. Create a project specific image with this as the parent image. [Here's an example](https://github.com/doneel/python-dev-base/blob/master/examples/Dockerfile).
-  a. The *simplest* possible file would look something like this:
+  1. The *simplest* possible file would look something like this:
      ```
        FROM danieloneel/python-dev-base:latest
        COPY requirements.txt /app/requirements.txt
@@ -43,24 +43,24 @@ It's a vim python development environment with sane defaults and a few strong pe
        RUN pip install --user -r /app/requirements.txt
        ENTRYPOINT ["bin/bash"]
      ```
-  b. In order to be able to include the requirements file in the container (and install the dependencies), you need to run the docker build command from the project base directory. Personally, I prefer not to have this dockerfile sitting in project's root directory, so I prefer to put it in a subdirectory, like 'development-env':
+  2. In order to be able to include the requirements file in the container (and install the dependencies), you need to run the docker build command from the project base directory. Personally, I prefer not to have this dockerfile sitting in project's root directory, so I prefer to put it in a subdirectory, like 'development-env':
      ```
       docker build -t my-project-dev-env -f development-env/Dockerfile .
      ```
 2. Run your docker container and mount your project (from your host machine) into the `/app` directory of the container:
-   a. Most simply
+   1. Most simply
    ```
     docker run -it -v ~/my_repos/my_project:/app/ my-project-dev-env:latest
    ```
-   b. Docker's default shortcut to deatch from within a container is `Ctrl-p Ctrl-q`, so it intercepts anytime you type `Ctrl-p` in the container. This is super annoying for scrolling in bash, so I add an additional argument to change that mapping: 
+   2. Docker's default shortcut to deatch from within a container is `Ctrl-p Ctrl-q`, so it intercepts anytime you type `Ctrl-p` in the container. This is super annoying for scrolling in bash, so I add an additional argument to change that mapping: 
    ```
     --detach-keys='ctrl-x,x' 
    ```
-   c. It's pretty common to use docker to run containers (like running your app while you develop). If you want to be able to issue docker commands from within your dev environment instead of having to have a separate window for your host computer, you can mount your host's docker socket into the container so that your container can talk to the docker daemon like any other program on your host machine:
+   3. It's pretty common to use docker to run containers (like running your app while you develop). If you want to be able to issue docker commands from within your dev environment instead of having to have a separate window for your host computer, you can mount your host's docker socket into the container so that your container can talk to the docker daemon like any other program on your host machine:
     ```
      --privileged -v /var/run/docker.sock:/var/run/docker.sock
     ```
-   d. **tl;dr** just run
+   4. **tl;dr** just run
     ```
      docker run -it -v ~/my_repos/my_project:/app/ --detach-keys='ctrl-x,x' --privileged -v /var/run/docker.sock:/var/run/docker.sock my-project-dev-env:latest
     ```
