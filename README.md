@@ -11,24 +11,24 @@ This repo represents a generic development environment for python, entirely proj
 ### Features
 It's a vim python development environment with sane defaults and a few strong personal preferences.
 **Built in functionality**
- * 'fd' is bound to escape in all modes
- * Backups are written to `~/.vim_backups`
- * `Shift-j` and `Shift-k` for faster scrolling
- * `Ctrl-j`/`Ctrl-k`/`Ctrl-h`/`Ctrl-l` for buffer movement
- * Typical vim tags setup: `Ctrl-]` to jump to a definition for a function/class/etc.
-   * I've taken the liberty of generating tags for dependencies as well, which is much easier to do in this isolated setup. You can jump to library source code as if it were your own code. 
+* 'fd' is bound to escape in all modes
+* Backups are written to `~/.vim_backups`
+* `Shift-j` and `Shift-k` for faster scrolling
+* `Ctrl-j`/`Ctrl-k`/`Ctrl-h`/`Ctrl-l` for buffer movement
+* Typical vim tags setup: `Ctrl-]` to jump to a definition for a function/class/etc.
+  * I've taken the liberty of generating tags for dependencies as well, which is much easier to do in this isolated setup. You can jump to library source code as if it were your own code. 
 
 **Plugins**
- * `fzf` for file navigation
-   * `<Space>f` will open a fuzzy file name search with a preview window
-   * `<Space><Shift>f` will open a fuzzy full-text search
- * `deoplete` + `jedi` for autocompletion. No actions required.
- * `vim-test` for testing
-   * `Ctrl-t n` to run the nearest test when you're in a test file
-   * `Ctrl-t f` to run the whole current file of tests
-   * `Ctrl-t a` to run all tests for the whole suite/project
-   * `Ctrl-t t` re-run whatever test or set of tests you most recently ran. You *don't* still have to be in the test file.
-   * `Ctrl-t v` go back to the most recently run test
- * `semshi` for python-specific highlighting and error messages
-   * `semsehi` will display an error marker in the left gutter when there's a syntax issue.
-   * `<Space>e` will jump to the next error and display the error message to make cleanup quicker
+* `fzf` for file navigation
+  * `<Space>f` will open a fuzzy file name search with a preview window
+  * `<Space><Shift>f` will open a fuzzy full-text search
+* `deoplete` + `jedi` for autocompletion. No actions required.
+* `vim-test` for testing
+  * `Ctrl-t n` to run the nearest test when you're in a test file
+  * `Ctrl-t f` to run the whole current file of tests
+  * `Ctrl-t a` to run all tests for the whole suite/project
+  * `Ctrl-t t` re-run whatever test or set of tests you most recently ran. You *don't* still have to be in the test file.
+  * `Ctrl-t v` go back to the most recently run test
+* `semshi` for python-specific highlighting and error messages
+  * `semsehi` will display an error marker in the left gutter when there's a syntax issue.
+  * `<Space>e` will jump to the next error and display the error message to make cleanup quicker
