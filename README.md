@@ -30,7 +30,7 @@ It's a vim python development environment with sane defaults and a few strong pe
   * `Ctrl-t t` re-run whatever test or set of tests you most recently ran. You *don't* still have to be in the test file.
   * `Ctrl-t v` go back to the most recently run test
 * `semshi` for python-specific highlighting and error messages
-  * `semsehi` will display an error marker in the left gutter when there's a syntax issue.
+  * `semshi` will display an error marker in the left gutter when there's a syntax issue.
   * `<Space>e` will jump to the next error and display the error message to make cleanup quicker
 
 ### Usage

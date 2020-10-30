@@ -267,6 +267,7 @@ map <C-l> <C-W>l
 nmap <silent> <leader>e :Semshi goto error<CR>:Semshi error<CR>
 let g:semshi#error_sign_delay = 3
 
+
 " ================= Deoplete Completion =================
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('auto_complete_delay', 200)
@@ -285,4 +286,4 @@ nmap <silent> <C-t>v :TestVisit<CR>
 
 " ================= CTags =================
 set tags=.tags
-autocmd BufWritePost *.py silent! !ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./.tags $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.                   isdir(d)))") ./ &
+autocmd BufWritePost *.py silent! !ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./.tags $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))") ./ &

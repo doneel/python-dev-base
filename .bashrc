@@ -5,7 +5,7 @@ export HISTFILESIZE=100000
 export EDITOR=vim
 export SHELL=/bin/bash
 export TERM=xterm-256color
-export MYVIMRC = ~/.config/nvim/init.vim
+export MYVIMRC=~/.config/nvim/init.vim
 
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
