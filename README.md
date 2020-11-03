@@ -9,7 +9,8 @@
 This repo represents a generic development environment for python, entirely project agnostic. You *could* use it directly for something quick, but it won't have project dependencies installed which makes any *execution* impossible. Instead, this image is intended to be a parent image for a project-specific setup. You can find an annotated example of a project-specific image in the examples directory. 
 
 ### Features
-It's a vim python development environment with sane defaults and a few strong personal preferences.
+It's a vim python development environment with sane defaults. Only some of your favorite bindings are overriden.
+
 **Built in functionality**
 * `fd` is bound to escape in all modes
 * Backups are written to `~/.vim_backups`
@@ -69,6 +70,26 @@ It's a vim python development environment with sane defaults and a few strong pe
     ```
      docker run -it --rm -v $PWD/:/app/ --detach-keys='ctrl-x,x' --privileged -v /var/run/docker.sock:/var/run/docker.sock -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK -v ~/.gitconfig:/home/developer/.gitconfig -v ~/.ssh:/home/developer/.ssh/ my-project-dev-env:latest
     ```
+
+## FAQ
+* Why would you use this?
+  * https://xkcd.com/1987/
+  * https://i.redd.it/pq4ynz1yaqn51.jpg
+
+* Dude your vim environment is (heretical/confusing/missing my favorite plugin)
+  Thanks for the feedback. Feel free to mount your own personal vim setup by adding an additional argument when you start the container. Note this container is running neovim, so:
+  ```
+  --mount type=bind,source=~/.vimrc,target=~/.config/nvim/init.vim
+  ```
+
+* I can't use all my favorite git shortcuts/bash shortcuts in here!
+  Another great use case for just mounting your personal `.bashrc` or `.bash_profile` in the container:
+  ```
+  --mount type=bind,source=~/.bashrc,target=/home/developer/.bashrc
+  ```
+
+* Could I do this but still use PyCharm?
+  Actually yes. [PyCharm Professional supports remote interpreters](https://www.jetbrains.com/help/pycharm/using-docker-as-a-remote-interpreter.html#intro) which would allow you run PyCharm on your host machine and outsource the python configuration to this docker container. 
 
 ## Debug help
 ### ssh config errors
