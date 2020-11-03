@@ -50,5 +50,5 @@ windows:
       # synchronize: after
       panes:
         - vim #primary editor window
-        - ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./.tags $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))") ./ && git status #hijacking functionality to generate project tags, then function as a git control pane
+        - git status #hijacking functionality to generate project tags, then function as a git control pane
   - docker: docker image ls #docker window for initiating a docker compose to test our changes

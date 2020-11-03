@@ -11,7 +11,7 @@ This repo represents a generic development environment for python, entirely proj
 ### Features
 It's a vim python development environment with sane defaults and a few strong personal preferences.
 **Built in functionality**
-* 'fd' is bound to escape in all modes
+* `fd` is bound to escape in all modes
 * Backups are written to `~/.vim_backups`
 * `Shift-j` and `Shift-k` for faster scrolling
 * `Ctrl-j`/`Ctrl-k`/`Ctrl-h`/`Ctrl-l` for buffer movement
@@ -45,7 +45,7 @@ It's a vim python development environment with sane defaults and a few strong pe
      ```
    2. In order to be able to include the requirements file in the container (and install the dependencies), you need to run the docker build command from the project base directory. Personally, I prefer not to have this dockerfile sitting in project's root directory, so I prefer to put it in a subdirectory, like 'development-env':
      ```
-      docker build -t my-project-dev-env -f development-env/Dockerfile .
+      docker build -pull -t my-project-dev-env -f development-env/Dockerfile .
      ```
 2. Run your docker container and mount your project (from your host machine) into the `/app` directory of the container:
    1. Most simply
@@ -60,7 +60,25 @@ It's a vim python development environment with sane defaults and a few strong pe
     ```
      --privileged -v /var/run/docker.sock:/var/run/docker.sock
     ```
+   4. Git and ssh configs are necessary to push to git remotes that require credentials:
+    ```
+     -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK -v ~/.gitconfig:/home/developer/.gitconfig -v ~/.ssh:/home/developer/.ssh/
+    ```
+
    4. **tl;dr** just run
     ```
-     docker run -it -v ~/my_repos/my_project:/app/ --detach-keys='ctrl-x,x' --privileged -v /var/run/docker.sock:/var/run/docker.sock my-project-dev-env:latest
+     docker run -it --rm -v $PWD/:/app/ --detach-keys='ctrl-x,x' --privileged -v /var/run/docker.sock:/var/run/docker.sock -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK -v ~/.gitconfig:/home/developer/.gitconfig -v ~/.ssh:/home/developer/.ssh/ my-project-dev-env:latest
     ```
+
+## Debug help
+### ssh config errors
+```
+/home/developer/.ssh/config: line 2: Bad configuration option: usekeychain
+/home/developer/.ssh/config: terminating, 1 bad configuration options
+```
+`usekeychain` is a command that OS X understands, but the linux image we're using here doesn't. Fortunately, ssh configs have a convenient way of handling this, just add to the top of your `~/.ssh/config`: 
+```
+IgnoreUnknown  UseKeychain,AddKeysToAgent
+```
+
+

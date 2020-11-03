@@ -287,3 +287,4 @@ nmap <silent> <C-t>v :TestVisit<CR>
 " ================= CTags =================
 set tags=.tags
 autocmd BufWritePost *.py silent! !ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./.tags $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))") ./ &
+autocmd VimEnter * silent! !ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./.tags $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))") ./ &
