@@ -46,7 +46,7 @@ It's a vim python development environment with sane defaults. Only some of your 
      ```
    2. In order to be able to include the requirements file in the container (and install the dependencies), you need to run the docker build command from the project base directory. Personally, I prefer not to have this dockerfile sitting in project's root directory, so I prefer to put it in a subdirectory, like 'development-env':
      ```
-      docker build -pull -t my-project-dev-env -f development-env/Dockerfile .
+      docker build --pull -t my-project-dev-env -f development-env/Dockerfile .
      ```
 2. Run your docker container and mount your project (from your host machine) into the `/app` directory of the container:
    1. Most simply
